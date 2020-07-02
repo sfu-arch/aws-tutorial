@@ -3,4 +3,4 @@ This repo contains summary of tutorials for aws
 
 
 ## HLS Tutorial
-Please read [HLS](./doc/hls.md)
+Please read [HLS](./docs/hls.md)
