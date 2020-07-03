@@ -250,6 +250,10 @@ For help with AFI creation issues, see [create-fpga-image error codes](../hdk/do
 
     * **[Xilinx Runtime (XRT) and SDx Tool versions](./docs/XRT_installation_instructions.md)**
 
+The following figure shows the overall development fellow of **SDAccel framework**:
+
+![sdaccelfellowchart](https://www.xilinx.com/products/design-tools/software-zone/sdaccel/_jcr_content/root/imageTabParsys/childParsys-overview/xilinxcolumns_eb2d/childParsys-1/xilinximage_f113.img.jpg/1553893312243.jpg)
+
 
 
 <a name="read"></a>
