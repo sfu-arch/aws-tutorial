@@ -64,12 +64,7 @@ It is highly recommended you read the documentation and utilize software and har
        $ cd $AWS_FPGA_REPO_DIR                                         
        $ source sdaccel_setup.sh
    ```
-    * Valid platforms for shell_v04261818: `AWS_PLATFORM_DYNAMIC_5_0` (Default) AWS F1 platform dynamically optimized for multi DDR use cases.
- * Changing to a different platform can be accomplished by setting AWS_PLATFORM environment variable. Only one platform is supported for this example:  
-     
-   ```
-       $ export AWS_PLATFORM=$AWS_PLATFORM_DYNAMIC_5_0 
-   ```  
+
 
 <a name="createapp"></a>
 # 1. Build the host application, Xilinx FPGA binary and verify you are ready for FPGA acceleration
@@ -126,15 +121,15 @@ The instructions below describe how to build the Xilinx FPGA Binary and host app
 
 NOTE: If you encounter an error with  `No current synthesis run set`, you may have previously run the [HDK IPI examples](../hdk/docs/IPI_GUI_Vivado_Setup.md) and created a `Vivado_init.tcl` file in `~/.Xilinx/Vivado`. This will cause [problems](https://forums.aws.amazon.com/thread.jspa?threadID=268202&tstart=25) with the build process, thus it is recommended to remove it before starting a hardware system build.
 
-Now that you have built your Xilinx FPGA binary, see [SDAccel Power Analysis Guide](./docs/SDAccel_Power_Analysis.md) for more details on how to analyze power for your binary.
+Now that you have built your Xilinx FPGA binary, see [SDAccel Power Analysis Guide](./SDAccel_Power_Analysis.md) for more details on how to analyze power for your binary.
 
 <a name="createafi"></a>
 # 2. Create an Amazon FPGA Image (AFI) 
 
 This assumes you have: 
-* [Compiled your host application and Xilinx FPGA Binary](#hw)
-* Validated your code using [SW/HW Emulation](#emu) and you are ready to create an AFI and test on F1.
-* [Setup AWS CLI and S3 bucket](docs/Setup_AWS_CLI_and_S3_Bucket.md) for AFI creation  
+1. [Compiled your host application and Xilinx FPGA Binary](#hw)
+2. Validated your code using [SW/HW Emulation](#emu) and you are ready to create an AFI and test on F1.
+3. [Setup AWS CLI and S3 bucket](docs/Setup_AWS_CLI_and_S3_Bucket.md) for AFI creation  
 
 The [create_sdaccel_afi.sh](./tools/create_sdaccel_afi.sh) script is provided to facilitate AFI creation from a Xilinx FPGA Binary, it:
 * Takes in your Xilinx FPGA Binary \*.xclbin file
