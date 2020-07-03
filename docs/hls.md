@@ -259,13 +259,9 @@ The following figure shows the overall development fellow of **SDAccel framework
 
 ![sdaccelfellowchart](https://www.xilinx.com/products/design-tools/software-zone/sdaccel/_jcr_content/root/imageTabParsys/childParsys-overview/xilinxcolumns_eb2d/childParsys-1/xilinximage_f113.img.jpg/1553893312243.jpg)
 
+* [AWS Memory model](aws_fpga_memory_map.md)
 
-
-* **HLS** Memory model:
-
-![memoryOpencl](./images/opencl_memory_model.png)
-
-* [SDAccel Guide for Amazon F1](docs/SDAccel_Guide_AWS_F1.md)
+* [SDAccel Guide for Amazon F1](SDAccel_Guide_AWS_F1.md)
 
 * [OpenCL memory model video](https://www.youtube.com/watch?v=c4a8uQ4AnMI)
 

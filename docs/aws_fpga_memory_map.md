@@ -10,6 +10,11 @@ Even though all of these PCIe BARs are mapped to the EC2 Instance memory-mapped 
 ![alt tag](./images/memory_map.png)
 
 
+* **HLS** Memory model:
+
+![memoryOpencl](./images/opencl_memory_model.png)
+
+
 # AWS FPGA: Programmer's View of the Custom Logic
 
 This document describes how an application running in Linux userspace would interface with the FPGA Custom Logic (CL) during runtime.
