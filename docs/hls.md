@@ -263,7 +263,7 @@ The following figure shows the overall development fellow of **SDAccel framework
 
 * **HLS** Memory model:
 
-![memoryOpencl](./docs/images/opencl_memory_model.png)
+![memoryOpencl](./images/opencl_memory_model.png)
 
 * [SDAccel Guide for Amazon F1](docs/SDAccel_Guide_AWS_F1.md)
 
