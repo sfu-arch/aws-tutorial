@@ -41,6 +41,12 @@ There are two parts required to work with AWS FPGA: Management and Runtime, and 
 
 ## DMA Example
 
+In this example, we use XDMA driver to `dma in` and `dma out` random data to FPGA. We take the following steps:
+
+1. Create a `write_buffer` with size of **buffer_size**. We write host data to the buffer first and then dma the data from buffer to FPGA.
+2. Create a `read_buffer` with size of **buffer_size**. We DMA in data from fpga to our host.
+
+In DMA example, we use all the 4 DDR controllers that FPGA provide us. Each DDR controller manages 16GB.
 
 ```C
 int dma_example(int slot_id, size_t buffer_size) {
@@ -105,6 +111,75 @@ out:
     /* if there is an error code, exit with status 1 */
     return (rc != 0 ? 1 : 0);
 }
+```
+
+
+## Control Example
+
+```C
+/* Helper function for accessing DDR controllers via AXI Master block */
+int axi_mstr_ddr_access(int slot_id, pci_bar_handle_t pci_bar_handle, uint32_t ddr_hi_addr, uint32_t ddr_lo_addr, uint32_t  ddr_data) {
+    int rc;
+    static uint32_t ccr_offset  = 0x500;
+    static uint32_t cahr_offset = 0x504;
+    static uint32_t calr_offset = 0x508;
+    static uint32_t cwdr_offset = 0x50C;
+    static uint32_t crdr_offset = 0x510;
+    uint32_t read_data;
+    int poll_limit = 20;
+
+    /* Issue AXI Master Write Command */
+    rc = fpga_pci_poke(pci_bar_handle, cahr_offset, ddr_hi_addr);
+    fail_on(rc, out, "Unable to write to AXI Master CAHR register!");
+    rc = fpga_pci_poke(pci_bar_handle, calr_offset, ddr_lo_addr);
+    fail_on(rc, out, "Unable to write to AXI Master CALR register!");
+    rc = fpga_pci_poke(pci_bar_handle, cwdr_offset, ddr_data);
+    fail_on(rc, out, "Unable to write to AXI Master CWDR register!");
+    rc = fpga_pci_poke(pci_bar_handle, ccr_offset, 0x1);
+    fail_on(rc, out, "Unable to write to AXI Master CCR register!");
+
+    /* Poll for done */
+    do{
+        // Read the CCR until the done bit is set
+        rc = fpga_pci_peek(pci_bar_handle, ccr_offset, &read_data);
+        fail_on(rc, out, "Unable to read AXI Master CCR from the fpga !");
+        read_data = read_data & (0x2);
+        poll_limit--;
+    } while (!read_data && poll_limit > 0);
+    fail_on((rc = !read_data), out, "AXI Master write to DDR did not complete. Done bit not set in CCR.");
+
+    /* Issue AXI Master Read Command */
+    rc = fpga_pci_poke(pci_bar_handle, ccr_offset, 0x5);
+    fail_on(rc, out, "Unable to write to AXI Master CCR register!");
+
+    /* Poll for done */
+    poll_limit = 20;
+    do{
+        // Read the CCR until the done bit is set
+        rc = fpga_pci_peek(pci_bar_handle, ccr_offset, &read_data);
+        fail_on(rc, out, "Unable to read AXI Master CCR from the fpga !");
+        read_data = read_data & (0x2);
+        poll_limit--;
+    } while (!read_data && poll_limit > 0);
+    fail_on((rc = !read_data), out, "AXI Master read from DDR did not complete. Done bit not set in CCR.");
+
+    /* Compare Read/Write Data */
+    // Read the CRDR for read data
+    rc = fpga_pci_peek(pci_bar_handle, crdr_offset, &read_data);
+    fail_on(rc, out, "Unable to read AXI Master CRDR from the fpga !");
+    if(read_data == ddr_data) {
+        rc = 0;
+        log_info("Resulting value at address 0x%x%x matched expected value 0x%x. It worked!", ddr_hi_addr, ddr_lo_addr, ddr_data);
+    }
+    else{
+        rc = 1;
+        fail_on(rc, out, "Resulting value, 0x%x did not match expected value 0x%x at address 0x%x%x. Something didn't work.\n", read_data, ddr_data, ddr_hi_addr, ddr_lo_addr);
+    }
+
+out:
+    return rc;
+}
+
 ```
 
 ## Memory map per Slot
