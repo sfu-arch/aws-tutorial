@@ -7,12 +7,10 @@ This document describes the actual size and attributes of each of the BARs, with
 Even though all of these PCIe BARs are mapped to the EC2 Instance memory-mapped I/O (MMIO) space, they need to be mapped to the  Linux kernel or a userspace application before accessing them. Please refer to the [Software Programmer's View](./Programmer_View.md) on how the various software pieces can interact with the FPGA PCIe Memory.
 
 
+![memoryOpencl](./images/opencl_memory_model.png)
+
 ![alt tag](./images/memory_map.png)
 
-
-* **HLS** Memory model:
-
-![memoryOpencl](./images/opencl_memory_model.png)
 
 
 # AWS FPGA: Programmer's View of the Custom Logic
