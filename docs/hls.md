@@ -130,6 +130,7 @@ This assumes you have:
 1. [Compiled your host application and Xilinx FPGA Binary](#hw)
 2. Validated your code using [SW/HW Emulation](#emu) and you are ready to create an AFI and test on F1.
 3. [Setup AWS CLI and S3 bucket](#creates3) for AFI creation  
+4. [Create SDAccel AFI script](#sdaccelafiscript)
 
 <a name="creates3"></a>
 ## Setup CLI and Create S3 Bucket
@@ -159,6 +160,8 @@ Next, create a folder for your log files:
 ```             
 Once your AFI has been created successfully, you are free to delete the tar file and logs as needed.  Deleting these files will not delete or modify your AFI.
 
+<a name="sdaccelafiscript"></a>
+## Create SDAccel AFI
 
 The [create_sdaccel_afi.sh](./tools/create_sdaccel_afi.sh) script is provided to facilitate AFI creation from a Xilinx FPGA Binary, it:
 * Takes in your Xilinx FPGA Binary \*.xclbin file
