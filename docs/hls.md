@@ -231,6 +231,7 @@ For help with AFI creation issues, see [create-fpga-image error codes](../hdk/do
    $ git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
    $ cd $AWS_FPGA_REPO_DIR 
    $ source sdaccel_setup.sh
+   $ fpga-clear-local-image  -S 0
 ```
 
 * Ensure the host application can find and load the \*.awsxclbin AWS FPGA binary file. 
