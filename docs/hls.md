@@ -244,7 +244,12 @@ For help with AFI creation issues, see [create-fpga-image error codes](../hdk/do
     
 
 
-## Troubleshooting
+
+
+<a name="read"></a>
+# Additional SDAccel Information (2017.4)
+
+
 
 * The Xilinx OpenCL runtime library depends on `xocl` library to transfer data between host processr and FPGA. When you source `dsaccel_runtime_setup.sh` script you may find ERROR about XRT library and xocl runtime library that is not loaded into your kernel. For XRT installation please follow the following tutorial:
 
@@ -256,8 +261,9 @@ The following figure shows the overall development fellow of **SDAccel framework
 
 
 
-<a name="read"></a>
-# Additional SDAccel Information (2017.4)
+* **HLS** Memory model:
+
+![memoryOpencl](./docs/images/opencl_memory_model.png)
 
 * [SDAccel Guide for Amazon F1](docs/SDAccel_Guide_AWS_F1.md)
 
