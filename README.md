@@ -1,11 +1,22 @@
 # AWS-Tutorial
 This repo contains summary of [Amazon AWS repository](https://github.com/aws/aws-fpga) documentation about how to use F1 instances. We have reorganized the documentation, add more explanation in cases that we feel it is needed, **Troubleshooting** section for each part, and explain how to connect [muIR](https://github.com/sfu-arch/muir-sim) to the rest of the system.
 
+
+
+**Table of Contents**
+
+* [AWS User Setup](#awsusersetup)
+* [HLS Tutorial](#hlstutorial)
+* [Custom Logic Hello World example](#clhelloexample)
+* [Custom Logic DMA](#clhelloexample)
+
+<a name="awsusersetup"></a>
 ## AWS User setup
 In this tutorial we have provided details instructions about how to setup your AWS account for the first time and install prerequisites. If you have never used AWS before, this is the best starting point for you.
 
 ** [First-time AWS User Setup](./docs/setup_account.md) **
 
+<a name="hlstutorial"></a>
 ## HLS Tutorial
 Our first tutorial starts by explaining how Xilinx HLS framework works on AWS machines. In this tutorial you will learn how to build your custom C + pragmas or OpenCL program on AWS and benchmark your application. In this tutorial you will learn:
 
@@ -18,7 +29,7 @@ Our first tutorial starts by explaining how Xilinx HLS framework works on AWS ma
 
 ** [Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with SDAccel](./docs/hls.md) **
 
-
+<a name="clhelloexample"></a>
 ## Custom Logic (CL) Hello World Example
 In this tutorial, we explain amazon AWS hello world custom logic example. The "Hello World" example exercises the `OCL` Shell-to-CL AXI-Lite interface, the Virtual LED outputs and the Virtual DIP switch inputs. This page will walk through the custom logic RTL (Verilog), explain the AXI-lite slave logic, and highlight the PCIe APIs that can be used for accessing the registers behind the AXI-lite interface.
 
