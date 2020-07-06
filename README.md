@@ -1,6 +1,10 @@
 # AWS-Tutorial
-
 This repo contains summary of [Amazon AWS repository](https://github.com/aws/aws-fpga) documentation about how to use F1 instances. We have reorganized the documentation, add more explanation in cases that we feel it is needed, **Troubleshooting** section for each part, and explain how to connect [muIR](https://github.com/sfu-arch/muir-sim) to the rest of the system.
+
+## AWS User setup
+In this tutorial we have provided details instructions about how to setup your AWS account for the first time and install prerequisites. If you have never used AWS before, this is the best starting point for you.
+
+** [First-time AWS User Setup](./docs/setup_account.md) **
 
 ## HLS Tutorial
 Our first tutorial starts by explaining how Xilinx HLS framework works on AWS machines. In this tutorial you will learn how to build your custom C + pragmas or OpenCL program on AWS and benchmark your application. In this tutorial you will learn:
