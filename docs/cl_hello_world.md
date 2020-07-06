@@ -37,7 +37,8 @@ values for every unused interface in the developer\'s CL.
 Now let's start with the top-level Verilog module of the example:
 `aws-fpga/hdk/cl/examples/cl_hello_world/design/cl_hello_world.sv`
 
-``` {.verilog}
+```verilog
+
 module cl_hello_world 
 
 (
@@ -86,7 +87,7 @@ or SystemVerilog files, this is where you also include the files.
 Then you will see the standard PCIe and PCIe subsystem ID settings, and
 an always block synchronizing the input reset signal, rst\_main\_n.
 
-``` {.verilog}
+```verilog
 //-------------------------------------------------
 // ID Values (cl_hello_world_defines.vh)
 //-------------------------------------------------
@@ -119,7 +120,7 @@ pipeline registers. This is for the timing purpose. The slave access
 implementation of the PCIe OCL AXI-L interface will interact with this
 set of "local" signals.
 
-``` {.verilog}
+```verilog
 //-------------------------------------------------
 // PCIe OCL AXI-L (SH to CL) Timing Flops
 //-------------------------------------------------
@@ -172,7 +173,7 @@ set of "local" signals.
 
 Now let's take a look at the AXI-lite slave logic.
 
-``` {.verilog}
+```verilog
 // Write Request
 logic        wr_active;
 logic [31:0] wr_addr;
@@ -219,7 +220,7 @@ asserted (i.e., after write data valid input is received) (line 26); and
 toggles from 1 to 0 after the Shell master asserts bready signal (line
 25).
 
-``` {.verilog}
+```verilog
 // Read Request
 always_ff @(posedge clk_main_a0)
    if (!rst_main_n_sync) begin
@@ -269,7 +270,7 @@ is received (arvalid\_q), read data valid output is asserted while the
 read data updates its value accordingly to the read address (line
 28-35).
 
-``` {.verilog}
+```verilog
 //-------------------------------------------------
 // Hello World Register
 //-------------------------------------------------
@@ -295,7 +296,7 @@ the input write data upon the write to the corresponding address
 (HELLO\_WORLD\_REG\_ADDR). The hello\_world\_q\_byte\_swapped is a
 byte-swapped version of the register.
 
-``` {.verilog}
+```verilog
 //-------------------------------------------------
 // Virtual LED Register
 //-------------------------------------------------
@@ -367,8 +368,12 @@ cli is not set up, install
 configure(<http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration>)
 it.
 
-    $ aws ec2 describe-fpga-images
-    # Example response
+```bash
+$ aws ec2 describe-fpga-images
+```
+# Example response
+
+```json
     {
       "FpgaImages": [
         ...
@@ -396,12 +401,13 @@ it.
         ...
       ]
     }
+```
 
 Install the FPGA Management tools. This installs he shell commands which
 will load an AFI onto an FPGA. Depending on your AMI used to run the F1
 instance, these steps may have been completed already.
 
-``` {.bash}
+```bash
 git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
 cd $AWS_FPGA_REPO_DIR
 source sdk_setup.sh
@@ -410,7 +416,7 @@ source sdk_setup.sh
 Use the FPGA Management tools commands with the FpgaImageGlobalId to
 load the AFI:
 
-``` {.bash}
+```bash
 # clear the fpga slot
 $ sudo fpga-clear-local-image  -S 0
 # load the fpga by FpgaImageGlobalId
@@ -425,10 +431,11 @@ Run the custom logic
 
 There are two things to see once the Hello World AFI is loaded:
 
-``` {.bash}
+```bash
 $ cd $AWS_FPGA_REPO_DIR/hdk/cl/examples/cl_hello_world/software/runtime
 $ make all
 $ sudo ./test_hello_world
+
 AFI PCI  Vendor ID: 0x1d0f, Device ID 0xf000
 ===== Starting with peek_poke_example =====
 register: 0xdeadbeef
@@ -439,7 +446,7 @@ Resulting value matched expected value 0xdeadbeef. It worked!
 The hello world AFI also connects the virtual dip switches to the
 virtual leds as another example.
 
-``` {.bash}
+```bash
 $ sudo fpga-get-virtual-led -S 0
 FPGA slot id 0 have the following Virtual LED:
 0000-0000-0000-0000
