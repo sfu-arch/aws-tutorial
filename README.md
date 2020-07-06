@@ -1,6 +1,6 @@
 # AWS-Tutorial
 
-This repo contains summary of [Amazon AWS repository](https://github.com/aws/aws-fpga) documentation about how to use F! instances. We have reorganized the documentation, add more explanation in cases that we feel it is needed, **Troubleshooting** section for each part, and explain how to connect [muIR](https://github.com/sfu-arch/muir-sim) to the rest of the system.
+This repo contains summary of [Amazon AWS repository](https://github.com/aws/aws-fpga) documentation about how to use F1 instances. We have reorganized the documentation, add more explanation in cases that we feel it is needed, **Troubleshooting** section for each part, and explain how to connect [muIR](https://github.com/sfu-arch/muir-sim) to the rest of the system.
 
 ## HLS Tutorial
 Our first tutorial starts by explaining how Xilinx HLS framework works on AWS machines. In this tutorial you will learn how to build your custom C + pragmas or OpenCL program on AWS and benchmark your application. In this tutorial you will learn:
