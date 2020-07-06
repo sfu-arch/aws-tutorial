@@ -421,9 +421,10 @@ Installation Process
       }
    ]
 }
+```
 
  **NOTE:** Without access to the DCV bucket mentioned in the [NICE DCV licensing setup guide](https://docs.aws.amazon.com/dcv/latest/adminguide/setting-up-license.html#setting-up-license-ec2), your server license is only valid of 15 days.
-```
+ 
 
 2.  On your FPGA Developer AMI Instance [update the Instance Security
     Group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#adding-security-group-rule)
