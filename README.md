@@ -19,3 +19,7 @@ Our first tutorial starts by explaining how Xilinx HLS framework works on AWS ma
 ** [Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with SDAccel](./docs/hls.md) **
 
 
+## Custom Logic (CL) Hello World Example
+In this tutorial, we explain amazon AWS hello world custom logic example. The "Hello World" example exercises the `OCL` Shell-to-CL AXI-Lite interface, the Virtual LED outputs and the Virtual DIP switch inputs. This page will walk through the custom logic RTL (Verilog), explain the AXI-lite slave logic, and highlight the PCIe APIs that can be used for accessing the registers behind the AXI-lite interface.
+
+** [Custom Logic (CL) Hello world example](./docs/cl_hello_world.md) **
